@@ -1,0 +1,5 @@
+total 16
+drwxrwxr-x 2 stepan stepan 4096 Nov 23 19:11 .
+drwxr-x--- 4 stepan stepan 4096 Nov 23 19:13 ..
+-rw-rw-r-- 1 stepan stepan   26 Nov 23 19:09 hello.txt
+-rw-rw-r-- 1 stepan stepan   32 Nov 23 19:11 world.txt
