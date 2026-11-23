@@ -1,0 +1,211 @@
+/* Стиль конспектов. Колонтитулы сделаны как у man-страниц:
+   LEC04(7)   Программирование в Linux   LEC04(7) */
+
+:root {
+    --ink: #1e2227;
+    --muted: #5d6670;
+    --rule: #d6dbe0;
+    --code-bg: #f3f5f7;
+    --accent: #255e73;
+    --pitfall: #8a5a00;
+    --serif: "Notes Serif", Georgia, serif;
+    --sans: "Notes Sans", "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", Consolas, monospace;
+}
+
+@page {
+    size: A4;
+    margin: 22mm 24mm 20mm 24mm;
+
+    @top-left { font: 7.5pt var(--mono); color: var(--muted); vertical-align: bottom; padding-bottom: 4mm; }
+    @top-center { content: "Программирование в Linux"; font: 7.5pt var(--mono); color: var(--muted); vertical-align: bottom; padding-bottom: 4mm; }
+    @top-right { font: 7.5pt var(--mono); color: var(--muted); vertical-align: bottom; padding-bottom: 4mm; }
+    @bottom-left { content: "СПбГУ, 2026"; font: 7.5pt var(--mono); color: var(--muted); vertical-align: top; padding-top: 4mm; }
+    @bottom-center { content: counter(page); font: 7.5pt var(--mono); color: var(--muted); vertical-align: top; padding-top: 4mm; }
+    @bottom-right { font: 7.5pt var(--mono); color: var(--muted); vertical-align: top; padding-top: 4mm; }
+}
+
+@page :first {
+    @top-left { content: none; }
+    @top-center { content: none; }
+    @top-right { content: none; }
+}
+
+* { box-sizing: border-box; }
+
+html {
+    font-family: var(--serif);
+    font-size: 11pt;
+    line-height: 1.5;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+body { margin: 0; }
+
+/* Шапка первой страницы */
+
+.title-block {
+    margin-bottom: 9mm;
+    padding-bottom: 5mm;
+    border-bottom: 1.5pt solid var(--ink);
+}
+
+.eyebrow {
+    margin: 0 0 2mm;
+    font: 600 8pt var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+h1 {
+    margin: 0;
+    font: 700 24pt/1.15 var(--serif);
+}
+
+.summary {
+    margin: 3mm 0 0;
+    max-width: 135mm;
+    font: italic 11pt/1.45 var(--serif);
+    color: var(--muted);
+}
+
+.eyebrow:empty,
+.summary:empty { display: none; }
+
+/* Заголовки */
+
+h2, h3, h4 {
+    font-family: var(--sans);
+    break-after: avoid;
+    page-break-after: avoid;
+}
+
+h2 {
+    margin: 8mm 0 2.5mm;
+    font-size: 13.5pt;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+h3 {
+    margin: 5mm 0 1.5mm;
+    font-size: 11pt;
+    font-weight: 600;
+}
+
+h4 {
+    margin: 4mm 0 1mm;
+    font-size: 10pt;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+/* Текст */
+
+p { margin: 0 0 2.5mm; orphans: 3; widows: 3; }
+
+ul, ol { margin: 0 0 2.5mm; padding-left: 6mm; }
+li { margin-bottom: 0.8mm; }
+li > p { margin-bottom: 1mm; }
+
+a { color: var(--accent); text-decoration: none; }
+
+strong { font-weight: 700; }
+
+hr {
+    margin: 6mm 0;
+    border: 0;
+    border-top: 0.6pt solid var(--rule);
+}
+
+/* Код */
+
+code, pre {
+    font-family: var(--mono);
+    font-variant-ligatures: none;
+    tab-size: 4;
+}
+
+code {
+    font-size: 0.86em;
+    padding: 0.1em 0.3em;
+    background: var(--code-bg);
+    border-radius: 2px;
+}
+
+pre {
+    margin: 0 0 3mm;
+    padding: 2.5mm 3.5mm;
+    font-size: 8.6pt;
+    line-height: 1.45;
+    background: var(--code-bg);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    break-inside: avoid;
+}
+
+pre code { padding: 0; font-size: inherit; background: none; }
+
+/* Подсветка Pygments: немного цвета, чтобы код читался, но не пестрил */
+.c, .c1, .cm, .cp, .ch, .cs { color: var(--muted); font-style: italic; }
+.k, .kd, .kn, .kr, .kt, .kc { color: var(--accent); }
+.s, .s1, .s2, .sb, .sc, .se, .sh, .si, .sx { color: #2e6b4a; }
+.m, .mi, .mf, .mh, .mo { color: var(--pitfall); }
+.nb, .nf { color: var(--ink); font-weight: 600; }
+.gp { color: var(--muted); }
+
+/* Врезки: > **Запомнить:** ... и > **Грабли:** ... */
+
+blockquote {
+    margin: 0 0 3mm;
+    padding: 0.5mm 0 0.5mm 4mm;
+    border-left: 2pt solid var(--rule);
+    color: var(--muted);
+}
+
+blockquote p:last-child { margin-bottom: 0; }
+
+.callout {
+    padding: 0.5mm 0 0.5mm 4mm;
+    color: var(--ink);
+    break-inside: avoid;
+}
+
+.callout strong:first-child {
+    font: 600 8pt var(--sans);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.callout-remember { border-left-color: var(--accent); }
+.callout-remember strong:first-child { color: var(--accent); }
+.callout-pitfall { border-left-color: var(--pitfall); }
+.callout-pitfall strong:first-child { color: var(--pitfall); }
+
+/* Таблицы */
+
+table {
+    width: 100%;
+    margin: 0 0 3.5mm;
+    border-collapse: collapse;
+    font: 9pt/1.4 var(--sans);
+    break-inside: avoid;
+}
+
+th {
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1pt solid var(--ink);
+    padding: 1.2mm 2.5mm 1.2mm 0;
+}
+
+td {
+    vertical-align: top;
+    border-bottom: 0.5pt solid var(--rule);
+    padding: 1.2mm 2.5mm 1.2mm 0;
+}
+
+td code, th code { font-size: 0.92em; }
