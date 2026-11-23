@@ -1,0 +1,24 @@
+# Результаты сборки
+*.o
+*.a
+*.so
+*.gcno
+*.gcda
+*.gcov
+build/
+build-*/
+dist/
+
+# Python
+__pycache__/
+.venv/
+
+# Редакторы и система
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Личные черновики
+_plan/

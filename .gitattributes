@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.pdf binary
+*.tar.gz binary
+*.bundle binary
+*.png binary
+*.woff2 binary
