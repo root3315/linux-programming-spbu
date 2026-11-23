@@ -85,12 +85,12 @@ build(lec04): собрать notes.pdf
 это контейнер, инструменты в нём ставлю сразу после запуска:
 
 ```bash
-docker run --rm -it -v "$PWD":/work -w /work ubuntu:24.04 bash
+docker run --rm -it -v "${PWD}:/work" -w /work ubuntu:24.04 bash
 apt update && apt install -y build-essential gdb cmake git
 ```
 
-Первая команда для PowerShell. В Git Bash перед ней нужно `MSYS_NO_PATHCONV=1`, иначе
-путь `/work` превратится в виндовый.
+Команда работает в PowerShell и в Linux. В Git Bash перед ней нужно `MSYS_NO_PATHCONV=1`,
+иначе путь `/work` превратится в виндовый.
 
 - Код собирается с `-Wall -Wextra` без предупреждений.
 - Вывод команд в отчётах настоящий, из контейнера. Длинный вывод сокращаю строкой `...`.
