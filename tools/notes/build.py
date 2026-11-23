@@ -85,6 +85,14 @@ def mark_callouts(body):
     return re.sub(pattern, replace, body)
 
 
+def drop_leading_h1(tokens):
+    """Заголовок # нужен для GitHub, а в PDF его заменяет шапка из front matter."""
+    rest = [t for t in tokens if t.type != "front_matter"]
+    if rest and rest[0].type == "heading_open" and rest[0].tag == "h1":
+        return rest[3:]
+    return rest
+
+
 def page_tag(lecture):
     """Метка для колонтитула в стиле man: 4 -> LEC04(7), 4.5 -> LEC04.5(7)."""
     if not lecture:
@@ -118,7 +126,7 @@ def render_html(md_path):
     lecture = meta.get("lecture", "")
     if lecture and not re.fullmatch(r"\d+(\.\d+)?", lecture):
         sys.exit(f"{md_path}: lecture должен быть числом, например 4 или 4.5, а не {lecture!r}")
-    body = mark_callouts(md.renderer.render(tokens, md.options, {}))
+    body = mark_callouts(md.renderer.render(drop_leading_h1(tokens), md.options, {}))
     return fill_template(meta, body)
 
 
