@@ -1,0 +1,31 @@
+    1  whoami
+    2  pwd
+    3  echo $SHELL
+    4  mkdir ~/project
+    5  cd ~/project
+    6  pwd
+    7  echo "hello linux" > hello.txt
+    8  echo "world" > world.txt
+    9  ls -la
+   10  cat hello.txt world.txt
+   11  find ~/project -type f -name "*.txt"
+   12  grep -rl "linux" ~/project
+   13  find ~/project -type f -exec grep -l "linux" {} +
+   14  sleep 100 &
+   15  jobs -l
+   16  pgrep -a sleep
+   17  ps -o pid,stat,cmd -p 37
+   18  kill 37
+   19  jobs
+   20  pgrep -a sleep || echo no sleep
+   21  nano hello.txt
+   22  cat hello.txt
+   23  grep -n linux hello.txt
+   24  grep -in linux hello.txt
+   25  vi hello.txt
+   26  cat world.txt
+   27  cd ~
+   28  ls -la project
+   29  ls -la project > ls-la-project.txt
+   30  history
+   31  history > history.txt
