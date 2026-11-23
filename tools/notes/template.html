@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+<style>
+@font-face { font-family: "Notes Serif"; src: url("{{tool_dir}}/fonts/NotesSerif-Regular.woff2"); font-weight: 400; }
+@font-face { font-family: "Notes Serif"; src: url("{{tool_dir}}/fonts/NotesSerif-Bold.woff2"); font-weight: 700; }
+@font-face { font-family: "Notes Serif"; src: url("{{tool_dir}}/fonts/NotesSerif-Italic.woff2"); font-style: italic; }
+@font-face { font-family: "Notes Sans"; src: url("{{tool_dir}}/fonts/NotesSans-Regular.woff2"); font-weight: 400; }
+@font-face { font-family: "Notes Sans"; src: url("{{tool_dir}}/fonts/NotesSans-SemiBold.woff2"); font-weight: 600; }
+@font-face { font-family: "JetBrains Mono"; src: url("{{tool_dir}}/fonts/JetBrainsMono-Regular.woff2"); font-weight: 400; }
+@font-face { font-family: "JetBrains Mono"; src: url("{{tool_dir}}/fonts/JetBrainsMono-SemiBold.woff2"); font-weight: 600; }
+@page { @top-left { content: "{{page_tag}}"; } @top-right { content: "{{page_tag}}"; } @bottom-right { content: "{{page_tag}}"; } }
+</style>
+<link rel="stylesheet" href="{{tool_dir}}/style.css">
+</head>
+<body>
+<header class="title-block">
+  <p class="eyebrow">{{eyebrow}}</p>
+  <h1>{{title}}</h1>
+  <p class="summary">{{summary}}</p>
+</header>
+<main>
+{{body}}
+</main>
+</body>
+</html>
