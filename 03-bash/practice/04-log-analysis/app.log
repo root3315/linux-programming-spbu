@@ -1,0 +1,5 @@
+INFO start
+WARN slow
+ERROR timeout
+ERROR database
+INFO stop
