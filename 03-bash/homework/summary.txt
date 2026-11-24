@@ -1,0 +1,8 @@
+Сводка по журналам в каталоге data
+Файлов *.log: 3
+
+FILE                            ERROR   WARN   INFO  OTHER
+app.log                             1      1      3      0
+db.log                              2      1      1      0
+nginx/web.log                       0      1      2      0
+TOTAL                               3      3      6      0

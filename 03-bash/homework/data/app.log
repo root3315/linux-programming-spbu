@@ -1,0 +1,5 @@
+2026-11-23T10:00:01 INFO app started
+2026-11-23T10:00:05 INFO config loaded from /etc/app.conf
+2026-11-23T10:02:17 WARN slow response 1840 ms
+2026-11-23T10:05:42 INFO user stepan logged in
+2026-11-23T21:15:56 ERROR disk quota exceeded
