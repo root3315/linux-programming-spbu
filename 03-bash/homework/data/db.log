@@ -1,0 +1,4 @@
+2026-11-23T10:00:02 INFO db pool opened, size 10
+2026-11-23T10:03:11 WARN connection pool 80% used
+2026-11-23T10:03:12 ERROR deadlock detected on table orders
+2026-11-23T21:17:20 ERROR replica lag 30 s
