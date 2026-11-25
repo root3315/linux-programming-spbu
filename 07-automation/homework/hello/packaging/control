@@ -1,0 +1,10 @@
+Package: hello
+Version: @VERSION@
+Section: utils
+Priority: optional
+Architecture: @ARCH@
+Maintainer: Stepan <root3315@users.noreply.github.com>
+Depends: libc6 (>= 2.34)
+Description: учебная утилита приветствия
+ Печатает приветствие и статистику по имени из аргумента.
+ Домашнее задание 7 курса «Программирование в Linux».
