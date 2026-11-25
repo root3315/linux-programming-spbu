@@ -1,0 +1,9 @@
+app
+fuzz_greeting
+tests/test_greeting
+tests/test_shorten
+build/
+*.o
+*.gcov
+*.gcda
+*.gcno

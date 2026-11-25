@@ -1,0 +1,9 @@
+# Проверки для make tidy. Отключено одно правило:
+# DeprecatedOrUnsafeBufferHandling требует функций *_s из Annex K C11
+# (snprintf_s, memcpy_s), а в glibc их нет. Оно ругается на любой
+# snprintf/memcpy/fprintf, даже с правильным размером буфера.
+Checks: >
+  clang-diagnostic-*,
+  clang-analyzer-*,
+  -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,
+  bugprone-*
