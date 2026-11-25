@@ -1,0 +1,28 @@
+# Два сервиса из одного образа: разные GREETING, общий том для журнала.
+# Запуск: docker compose up (остановка: Ctrl+C или docker compose stop)
+name: hello-compose
+
+services:
+  hello-ru:
+    build: .
+    image: hello-hw:multi
+    command: ["--serve", "Степан"]
+    environment:
+      GREETING: "Привет"
+      LOG_FILE: /data/visits.log
+    volumes:
+      - visits:/data
+
+  hello-en:
+    image: hello-hw:multi
+    command: ["--serve", "Stepan"]
+    environment:
+      GREETING: "Hello"
+      LOG_FILE: /data/visits.log
+    volumes:
+      - visits:/data
+    depends_on:
+      - hello-ru
+
+volumes:
+  visits:
