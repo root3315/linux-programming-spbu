@@ -1,0 +1,4 @@
+FROM scratch
+COPY --from=hello:multi /app/hello /hello
+COPY app/data.txt /data.txt
+ENTRYPOINT ["/hello"]
