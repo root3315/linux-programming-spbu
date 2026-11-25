@@ -1,0 +1,66 @@
+
+=== 1. Версия ядра ===
+$ uname -r
+6.18.58.1-microsoft-standard-WSL2
+$ uname -a
+Linux devbox 6.18.58.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Tue Oct 27 00:24:11 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+$ cat /proc/version
+Linux version 6.18.58.1-microsoft-standard-WSL2 (root@6869314ecc53) (gcc (GCC) 13.2.0, GNU ld (GNU Binutils) 2.41) #1 SMP PREEMPT_DYNAMIC Tue Oct 27 00:24:11 UTC 2026
+
+=== 2. Конфигурация ===
+$ ls -l /boot/config-6.18.58.1-microsoft-standard-WSL2
+ls: cannot access '/boot/config-6.18.58.1-microsoft-standard-WSL2': No such file or directory
+# /boot/config-* нет, беру конфигурацию из самого ядра: /proc/config.gz
+$ zgrep -c '^CONFIG_' /proc/config.gz
+2723
+$ zgrep -c '=y$' /proc/config.gz
+1825
+$ zgrep -c '=m$' /proc/config.gz
+771
+$ zgrep -c 'is not set$' /proc/config.gz
+3175
+$ zgrep -E '^CONFIG_EXT4_FS=|^CONFIG_BTRFS_FS=|^# CONFIG_WLAN_VENDOR_INTEL ' /proc/config.gz
+# CONFIG_WLAN_VENDOR_INTEL is not set
+CONFIG_EXT4_FS=y
+CONFIG_BTRFS_FS=m
+
+=== 3. Модули ===
+$ lsmod | tail -n +2 | wc -l
+29
+$ find /lib/modules/6.18.58.1-microsoft-standard-WSL2 -name '*.ko*' | wc -l
+748
+
+=== 4. modinfo br_netfilter ===
+$ modinfo -F filename br_netfilter
+/lib/modules/6.18.58.1-microsoft-standard-WSL2/kernel/net/bridge/br_netfilter.ko
+$ modinfo -F license br_netfilter
+GPL
+$ modinfo -F depends br_netfilter
+bridge
+
+=== 5. Параметры загрузки ===
+$ cat /proc/cmdline
+initrd=\initrd.img WSL_ROOT_INIT=1 panic=-1 nr_cpus=8 hv_utils.timesync_implicit=1 printk.devkmsg=on page_reporting.page_reporting_order=5 hv_storvsc.storvsc_max_hw_queues=4 console=hvc0 debug pty.legacy_count=0 WSL_ENABLE_CRASH_DUMP=1
+# по одному параметру в строке:
+initrd=\initrd.img
+WSL_ROOT_INIT=1
+panic=-1
+nr_cpus=8
+hv_utils.timesync_implicit=1
+printk.devkmsg=on
+page_reporting.page_reporting_order=5
+hv_storvsc.storvsc_max_hw_queues=4
+console=hvc0
+debug
+pty.legacy_count=0
+WSL_ENABLE_CRASH_DUMP=1
+
+=== 6. Последние строки журнала ядра ===
+$ cat /proc/sys/kernel/dmesg_restrict
+0
+$ dmesg | tail -5
+[24153.011979] vethfba8ccf: renamed from eth0
+[24153.042289] docker0: port 2(veth4dbec11) entered disabled state
+[24153.042530] veth4dbec11 (unregistering): left allmulticast mode
+[24153.042535] veth4dbec11 (unregistering): left promiscuous mode
+[24153.042537] docker0: port 2(veth4dbec11) entered disabled state
