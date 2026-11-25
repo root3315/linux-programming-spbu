@@ -29,5 +29,14 @@ rm -rf build/check
 dpkg-deb -x "$DEB" build/check
 build/check/usr/bin/hello "пакет"
 
+# Версия в control и версия, которую печатает программа, обязаны совпадать.
+PKG_VERSION=$(dpkg-deb -f "$DEB" Version)
+BIN_VERSION=$(build/check/usr/bin/hello --version)
+if [ "$BIN_VERSION" != "hello $PKG_VERSION" ]; then
+    echo "версии разошлись: control $PKG_VERSION, программа '$BIN_VERSION'" >&2
+    exit 1
+fi
+echo "версия совпадает: $BIN_VERSION"
+
 echo "=== готово ==="
 ls -l dist/
