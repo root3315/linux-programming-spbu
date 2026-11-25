@@ -2,22 +2,22 @@
 #include "stats.h"
 
 #include <ctype.h>
+#include <limits.h>
 #include <stdio.h>
 
-/* Сколько разных байт в строке: для каждого байта ищу, не встречался ли
- * он раньше. */
+/* Сколько разных байт в строке. Значений байта всего 256, поэтому
+ * хватает таблицы «уже видел»: один проход вместо сравнения каждого
+ * байта со всеми предыдущими (было O(n^2), см. REPORT.md, раздел 4). */
 static size_t count_distinct(const unsigned char *s, size_t len)
 {
+    unsigned char seen[UCHAR_MAX + 1] = {0};
     size_t distinct = 0;
 
     for (size_t i = 0; i < len; i++) {
-        size_t seen = 0;
-
-        for (size_t j = 0; j < i; j++)
-            if (s[j] == s[i])
-                seen++;
-        if (seen == 0)
+        if (!seen[s[i]]) {
+            seen[s[i]] = 1;
             distinct++;
+        }
     }
     return distinct;
 }
