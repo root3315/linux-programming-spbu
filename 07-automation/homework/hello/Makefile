@@ -11,7 +11,10 @@ CSTD    = -std=c11
 WARN    = -Wall -Wextra -Wpedantic -Werror
 CFLAGS  = $(CSTD) $(WARN) -O2 -g
 PREFIX  = /usr/local
-VERSION = 1.0.0
+
+# Версия живёт только здесь: отсюда её берут --version, пакет и ci.sh.
+VERSION  = 1.1.0
+CPPFLAGS = -DVERSION=\"$(VERSION)\"
 
 TARGET  = hello
 SRCS    = main.c greet.c stats.c
@@ -32,9 +35,10 @@ $(TARGET): $(OBJS)
 	$(CC) -o $@ $^
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-main.o: greet.h stats.h
+# VERSION зашита в main.o: сменили её в Makefile — main.o надо пересобрать.
+main.o: greet.h stats.h Makefile
 greet.o: greet.h
 stats.o: stats.h
 
@@ -43,6 +47,9 @@ $(TEST): tests/test_hello.c greet.o stats.o greet.h stats.h
 
 test: $(TARGET) $(TEST)
 	./$(TEST)
+	@v=$$(./$(TARGET) --version); \
+	if [ "$$v" = "hello $(VERSION)" ]; then echo "ok:   --version: $$v"; \
+	else echo "FAIL: --version: '$$v', ждал 'hello $(VERSION)'"; exit 1; fi
 
 # DESTDIR — корень «будущей системы»: так пакет собирается без root.
 install: $(TARGET)
@@ -58,7 +65,7 @@ deb: $(TARGET)
 profile:
 	rm -rf $(PROF_DIR)
 	mkdir -p $(PROF_DIR)
-	$(CC) $(PROF_CFLAGS) -o $(PROF_DIR)/$(TARGET) $(SRCS)
+	$(CC) $(CPPFLAGS) $(PROF_CFLAGS) -o $(PROF_DIR)/$(TARGET) $(SRCS)
 	cd $(PROF_DIR) && ./$(TARGET) --bench $(BENCH)
 	cd $(PROF_DIR) && gprof -b -p $(TARGET) gmon.out > flat.txt
 	head -n 10 $(PROF_DIR)/flat.txt

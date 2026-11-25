@@ -1,6 +1,7 @@
 /* main.c — точка входа hello.
  *
  *   hello [имя]        приветствие и статистика по имени
+ *   hello --version    версия из Makefile
  *   hello --bench N    статистика по строке из N байт, для замеров
  */
 #include "greet.h"
@@ -10,9 +11,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* Версию передаёт Makefile: -DVERSION=\"1.1.0\". Без него — "unknown". */
+#ifndef VERSION
+#define VERSION "unknown"
+#endif
+
 static void usage(FILE *out)
 {
-    fputs("usage: hello [--bench N] [имя]\n", out);
+    fputs("usage: hello [--version] [--bench N] [имя]\n", out);
 }
 
 /* Строка из n байт: образец повторяется, пока не наберётся длина. */
@@ -54,6 +60,10 @@ int main(int argc, char **argv)
 {
     if (argc > 1 && strcmp(argv[1], "--help") == 0) {
         usage(stdout);
+        return 0;
+    }
+    if (argc > 1 && strcmp(argv[1], "--version") == 0) {
+        printf("hello %s\n", VERSION);
         return 0;
     }
     if (argc > 1 && strcmp(argv[1], "--bench") == 0) {
