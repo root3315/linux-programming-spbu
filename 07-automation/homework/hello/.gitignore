@@ -1,0 +1,8 @@
+# Всё, что создаёт сборка, восстанавливается командой make.
+hello
+*.o
+tests/test_hello
+build/
+build-prof/
+dist/
+gmon.out
