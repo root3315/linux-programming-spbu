@@ -1,0 +1,33 @@
+# Doxyfile — настройки сайта документации.
+# Запуск: doxygen Doxyfile
+# Результат: docs/html/index.html
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "Калькулятор на flex и bison"
+PROJECT_BRIEF          = "Переменные, функции, таблица символов"
+OUTPUT_LANGUAGE        = English
+OUTPUT_DIRECTORY       = docs
+
+# Документируем исходники на C. Сгенерированные файлы и тесты в сайт не идут.
+INPUT                  = .
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = NO
+EXCLUDE                = lex.yy.c calc.tab.c calc.tab.h test_vars.c test_funcs.c
+
+# Показываем только то, что описано в комментариях, и ругаемся на пропуски.
+EXTRACT_ALL            = NO
+EXTRACT_STATIC         = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
+WARN_AS_ERROR          = YES
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HAVE_DOT               = NO
+QUIET                  = YES
+
+# атрибут format в calc.h сбивает doxygen: выбрасываем его при разборе
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+PREDEFINED             = "__attribute__(x)="
