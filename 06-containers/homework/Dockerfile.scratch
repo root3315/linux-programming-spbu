@@ -1,0 +1,16 @@
+# Статический бинарник на пустой базе: в образе нет ни оболочки, ни libc.
+FROM alpine:3.20 AS builder
+
+RUN apk add --no-cache build-base
+WORKDIR /src
+COPY app/ .
+RUN make static
+
+FROM scratch
+
+COPY --from=builder /src/hello /hello
+
+USER 65534:65534
+
+ENTRYPOINT ["/hello"]
+CMD ["Docker"]

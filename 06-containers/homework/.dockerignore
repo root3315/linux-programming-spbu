@@ -1,0 +1,11 @@
+# В контекст сборки нужен только app/ с исходниками.
+.git
+app/*.o
+app/hello
+*.md
+*.tar.gz
+report.txt
+*.sh
+Dockerfile*
+compose.yml
+**/.env
