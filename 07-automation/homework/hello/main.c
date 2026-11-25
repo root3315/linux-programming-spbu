@@ -12,7 +12,7 @@
 
 static void usage(FILE *out)
 {
-    fputs("usage: hello [--bench N] [имя]\n", out);
+    fputs("Использование: hello [--bench N] [ИМЯ]\n", out);
 }
 
 /* Строка из n байт: образец повторяется, пока не наберётся длина. */
