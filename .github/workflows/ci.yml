@@ -1,0 +1,35 @@
+# CI для ДЗ 7: сборка, тест и пакет проекта hello на каждый push и pull request.
+# Те же шаги делает 07-automation/homework/hello/ci.sh, его можно запустить локально.
+name: CI
+
+on:
+  push:
+    paths:
+      - '07-automation/homework/hello/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - '07-automation/homework/hello/**'
+      - '.github/workflows/ci.yml'
+
+jobs:
+  hello:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Инструменты
+        run: |
+          gcc --version | head -n 1
+          make --version | head -n 1
+          dpkg-deb --version | head -n 1
+
+      - name: ci.sh (сборка, тест, пакет)
+        run: cd 07-automation/homework/hello && ./ci.sh
+
+      - name: Сохранить .deb
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-deb
+          path: 07-automation/homework/hello/dist/*.deb
+          if-no-files-found: error
