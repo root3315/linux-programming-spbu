@@ -1,0 +1,6 @@
+# Исправленная версия broken/Makefile-spaces из Chapter 04:
+# в рецепте табуляция вместо восьми пробелов (cat -A покажет ^I).
+all: hello
+
+hello: main.c
+	gcc main.c -o hello
