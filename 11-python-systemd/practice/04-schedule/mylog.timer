@@ -1,0 +1,11 @@
+# Раз в минуту, чтобы проверить быстро. Рабочий вариант, каждый день в 3:00, в session.md.
+[Unit]
+Description=Запускать мой подсчёт раз в минуту
+
+[Timer]
+OnCalendar=*:*:00
+AccuracySec=1s
+Persistent=true
+
+[Install]
+WantedBy=timers.target
