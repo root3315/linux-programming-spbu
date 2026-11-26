@@ -18,6 +18,7 @@
 | 8 | [Проверка программ](08-code-health/README.md) | [md](08-code-health/notes.md), [pdf](08-code-health/notes.pdf) | [4 практики](08-code-health/practice/README.md) | [тесты и фаззинг](08-code-health/homework/README.md), [отчёт](08-code-health/homework/REPORT.md) |
 | 9 | [Сети](09-networks/README.md) | [md](09-networks/notes.md), [pdf](09-networks/notes.pdf) | [4 практики](09-networks/practice/README.md) | [чат на двоих](09-networks/homework/README.md), [отчёт](09-networks/homework/REPORT.md) |
 | 10 | [Генераторы кода](10-codegen-docs/README.md) | [md](10-codegen-docs/notes.md), [pdf](10-codegen-docs/notes.pdf) | [4 практики](10-codegen-docs/practice/README.md) | [калькулятор](10-codegen-docs/homework/README.md), [отчёт](10-codegen-docs/homework/REPORT.md) |
+| 11 | [Python и systemd](11-python-systemd/README.md) | [md](11-python-systemd/notes.md), [pdf](11-python-systemd/notes.pdf) | [4 практики](11-python-systemd/practice/README.md) | [ночной сторож](11-python-systemd/homework/README.md), [отчёт](11-python-systemd/homework/REPORT.md) |
 
 ## Как читать
 
