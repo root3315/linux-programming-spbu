@@ -1,0 +1,8 @@
+# Подсчёт уровней в моём журнале. Скрипт и журнал лежат в ~/auto-lab/my lab,
+# в имени каталога пробел, поэтому оба пути в ExecStart в кавычках.
+[Unit]
+Description=Мой подсчёт уровней в журнале
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 "%h/auto-lab/my lab/logsum.py" "%h/auto-lab/my lab/app.log" --save "%h/auto-lab/my lab/report.json"

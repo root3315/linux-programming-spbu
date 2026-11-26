@@ -1,0 +1,11 @@
+# Будильник для nightcheck.service: каждый день в 3:00.
+[Unit]
+Description=Ночная проверка диска и сайта, каждый день в 3:00
+
+[Timer]
+OnCalendar=*-*-* 03:00:00
+# Машина была выключена в 3:00: проверка пройдёт сразу после включения.
+Persistent=true
+
+[Install]
+WantedBy=timers.target
