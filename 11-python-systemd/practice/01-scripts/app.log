@@ -1,0 +1,8 @@
+INFO 2026-11-20 09:00:01 server started on port 8000
+ERROR 2026-11-20 09:00:05 database connection refused
+INFO 2026-11-20 09:01:12 GET / 200
+WARN 2026-11-20 09:02:40 slow response 1850 ms
+ERROR 2026-11-20 09:03:02 database connection refused
+INFO 2026-11-20 09:04:18 GET /about 200
+WARN 2026-11-20 09:05:51 disk usage 91%
+ERROR 2026-11-20 09:06:30 worker crashed, restarting
