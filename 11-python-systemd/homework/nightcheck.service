@@ -1,0 +1,14 @@
+# Один ночной обход: проверить диск и сайт, записать отчёт и выйти.
+# @PROJECT@ при установке заменяется на каталог с nightcheck.py (install.sh).
+[Unit]
+Description=Ночная проверка диска и сайта
+
+[Service]
+Type=oneshot
+# Что проверять, лежит в отдельном файле: юнит не надо править под каждую машину.
+EnvironmentFile=%h/.config/nightcheck.env
+# Создаёт ~/.local/state/nightcheck, %S в пользовательском юните и есть ~/.local/state.
+StateDirectory=nightcheck
+# Путь к скрипту в кавычках: в нём может быть пробел. ${VAR} в фигурных
+# скобках systemd подставляет одним аргументом, даже если в значении пробел.
+ExecStart=/usr/bin/python3 "@PROJECT@/nightcheck.py" --dir ${NIGHTCHECK_DIR} --max-mb ${NIGHTCHECK_MAX_MB} --url ${NIGHTCHECK_URL} --report %S/nightcheck/report.json
